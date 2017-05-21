@@ -23,6 +23,13 @@
  */
 package aescrypt;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Rahul Pal
@@ -34,6 +41,14 @@ public class Disclaimer extends javax.swing.JFrame {
      */
     public Disclaimer() {
         initComponents();
+        InputStream is = Disclaimer.class.getResourceAsStream("HACKED.ttf");
+        Font font = null;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(CryptUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jLabel1.setFont(font.deriveFont(28f));
     }
 
     /**
