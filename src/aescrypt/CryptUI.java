@@ -23,7 +23,13 @@
  */
 package aescrypt;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileSystemView;
@@ -37,9 +43,19 @@ public class CryptUI extends javax.swing.JFrame {
     /**
      * Creates new form CryptUI
      */
-    public CryptUI() {
+    public CryptUI()  {
         initComponents();
-        //jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        //setting HACKED font for title
+        InputStream is = CryptUI.class.getResourceAsStream("HACKED.ttf");
+        Font font = null;
+        try {
+            font = Font.createFont(Font.TRUETYPE_FONT, is);
+        } catch (FontFormatException | IOException ex) {
+            Logger.getLogger(CryptUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        jLabel1.setFont(font.deriveFont(28f));
+        jLabel2.setFont(font.deriveFont(14f));
+        
     }
     
     public static File chooseFile(String MODE){
@@ -102,10 +118,10 @@ public class CryptUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("HACKED", 0, 28)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 0, 28)); // NOI18N
         jLabel1.setText("Welcome To AESCrypt");
 
-        jLabel2.setFont(new java.awt.Font("HACKED", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel2.setText("A Simple Tool to Keep your Files Secured");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
@@ -173,7 +189,7 @@ public class CryptUI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(201, 201, 201)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 6, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,7 +258,7 @@ public class CryptUI extends javax.swing.JFrame {
                     .addComponent(buttonPathToSaveDeFile))
                 .addGap(18, 18, 18)
                 .addComponent(buttonDecryptFile)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
